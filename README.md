@@ -4,7 +4,33 @@
 
 這份壓縮檔是**加入既有 STM32CubeIDE／STM32G474RE HAL 專案的程式套件**，不是可直接開啟的完整 CubeIDE 工程。不包含 `.ioc`、CMSIS、STM32 HAL Drivers、啟動碼、linker script 或 STM32CubeIDE 專案設定。必須先有能以 ST-LINK 燒錄、HAL SysTick 正常運作的 NUCLEO-G474RE 專案，再依第 2 節整合。
 
+**教授驗收補充：** [`MAIN_C_教授口頭講解.md`](MAIN_C_教授口頭講解.md) 說明 `main.c` 各函式與七項技能對照；[`GITHUB_公開上傳教學.md`](GITHUB_公開上傳教學.md) 提供公開儲存庫上傳流程。本套件 **未實作 PWM 與按鈕 EXTI 中斷**，請依真實狀態向教授說明。
+
 系統使用同一顆 PC8 綠燈當作雙方起跑訊號。**STM32 負責去彈跳、隨機等待、毫秒計時、勝負與比分；Python 只做控制、顯示和匯出**。玩家卡片、回合紀錄、CSV 的反應時間採 `0.237 秒` 格式，UART 永遠傳原始整數毫秒 `237`。
+
+## 專題實作照片
+
+以下為本專題的 **Python 圖形客戶端畫面** 與 **NUCLEO-G474RE 實體接線照片**，方便教授在 GitHub README 直接查看，無須另外下載圖片。照片由專題製作者提供。
+
+### Python 操作介面（COM3 連線畫面）
+
+![Python Tkinter 圖形客戶端：雙人比分、COM3 連線狀態、開始回合與回合紀錄表](docs/images/python_gui.png)
+
+畫面展示 Tkinter 客戶端的 COM 埠選擇與已連線資訊、兩位玩家比分區、開始／取消回合、重新比賽與回合紀錄欄位。**此截圖為待命畫面，不代表已展示完整對戰結果。**
+
+### STM32 實體接線：紅燈亮起
+
+![STM32 NUCLEO-G474RE 與麵包板實作，紅色 LED 亮起](docs/images/hardware_red_led.png)
+
+可見 NUCLEO-G474RE、麵包板、兩顆玩家按鈕、紅／綠 LED、限流電阻與蜂鳴器等硬體配置；這張照片中的紅色 LED 亮起，可作為等待燈號的展示照片。
+
+### STM32 實體接線：綠燈亮起
+
+![STM32 NUCLEO-G474RE 與麵包板實作，綠色 LED 亮起](docs/images/hardware_green_led.png)
+
+相同硬體配置下可見綠色 LED 亮起，可作為共用起跑燈號的展示照片。遊戲中兩名玩家應以這顆**實體綠燈**為反應時間起點，而不是看 Python 畫面上的提示。
+
+> **驗證說明：** 這些照片呈現專題 GUI 與實體接線／燈號狀態，但無法單靠照片證明所有規則、時間精度或韌體已完整通過實機測試。完整驗證狀態詳見下方「測試方式與實際驗證狀態」。
 
 ## 0. 檔案清單
 
@@ -19,9 +45,17 @@ ReactionPK_STM32_Python/
 │  ├─ protocol.py         // JSON/LF 封包檢查、分段接收與壞資料復原
 │  ├─ requirements.txt    // pySerial
 │  └─ start_windows.bat   // Windows 一鍵開啟 GUI（需先安裝 Python 依賴）
+├─ docs/
+│  ├─ images/             // 專題實作照片（Python 介面、紅燈、綠燈）
+│  ├─ overview_slide.png   // 專題總流程圖
+│  ├─ main_flow.png        // main.c 主迴圈流程圖
+│  └─ game_flow.png        // pk_game.c 判定流程圖（另附 SVG、DOT）
 ├─ tests/
 │  ├─ pk_game_host.c      // 用 GCC 在電腦端模擬 STM32 狀態機
 │  └─ test_client.py      // Python 協定測試及 C/JSON 交叉解析
+├─ MAIN_C_教授口頭講解.md
+├─ GITHUB_公開上傳教學.md
+├─ .gitignore
 └─ README.md
 ```
 
