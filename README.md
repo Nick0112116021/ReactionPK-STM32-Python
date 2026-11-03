@@ -14,7 +14,7 @@
 
 ### Python 操作介面（COM3 連線畫面）
 
-![Python Tkinter 圖形客戶端：雙人比分、COM3 連線狀態、開始回合與回合紀錄表](docs/images/python_gui.png)
+![Python Tkinter 圖形客戶端：雙人比分、COM3 連線狀態、開始回合與回合紀錄表](圖片1.jpg)
 
 畫面展示 Tkinter 客戶端的 COM 埠選擇與已連線資訊、兩位玩家比分區、開始／取消回合、重新比賽與回合紀錄欄位。**此截圖為待命畫面，不代表已展示完整對戰結果。**
 
