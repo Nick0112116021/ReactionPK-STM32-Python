@@ -20,7 +20,7 @@
 
 ### STM32 實體接線：紅燈亮起
 
-![STM32 NUCLEO-G474RE 與麵包板實作，紅色 LED 亮起](docs/images/hardware_red_led.png)
+![STM32 NUCLEO-G474RE 與麵包板實作，紅色 LED 亮起](圖片2.jpg)
 
 可見 NUCLEO-G474RE、麵包板、兩顆玩家按鈕、紅／綠 LED、限流電阻與蜂鳴器等硬體配置；這張照片中的紅色 LED 亮起，可作為等待燈號的展示照片。
 
